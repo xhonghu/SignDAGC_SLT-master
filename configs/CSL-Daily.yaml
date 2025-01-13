@@ -1,0 +1,31 @@
+dataset_root: /root/data1/Data/csl-daily
+pretrained_path: pretrained_models/CSL-Daily/best_model.pt
+
+level: char
+gloss:
+  gloss2id_file: ./preprocess/CSL-Daily/gloss2ids.pkl
+TranslationNetwork:
+  GlossEmbedding:
+    freeze: false
+    gloss2embed_file: pretrained_models/mBart_zh/gloss_embeddings.bin
+  GlossTokenizer:
+    gloss2id_file: pretrained_models/mBart_zh/gloss2ids.pkl
+    src_lang: zh_CSL
+  TextTokenizer:
+    pretrained_model_name_or_path: pretrained_models/mBart_zh
+    pruneids_file: pretrained_models/mBart_zh/old2new_vocab.pkl
+    tgt_lang: zh_CN
+  load_ckpt: pretrained_models/CSL-Daily_g2t/g2t.pth
+  pretrained_model_name_or_path: pretrained_models/mBart_zh
+  overwrite_cfg:
+    attention_dropout: 0.1
+    dropout: 0.3
+  label_smoothing: 0.2
+
+translation:
+  length_penalty: 1
+  max_length: 60
+  num_beams: 4
+
+VLMapper:
+  type: embedding

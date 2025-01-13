@@ -1,0 +1,31 @@
+dataset_root: "/root/data1/Data/PHOENIX-2014-T-release-v3/PHOENIX-2014-T/"
+pretrained_path: pretrained_models/phoenix-2014T/best_model.pt
+
+level: word
+gloss:
+  gloss2id_file: ./preprocess/phoenix2014-T/gloss2ids.pkl
+  lower_case: False
+TranslationNetwork:
+  GlossEmbedding:
+    freeze: false
+    gloss2embed_file: pretrained_models/mBart_de/gloss_embeddings.bin
+  GlossTokenizer:
+    gloss2id_file: pretrained_models/mBart_de/gloss2ids.pkl
+    src_lang: de_DGS
+  TextTokenizer:
+    pretrained_model_name_or_path: pretrained_models/mBart_de
+    pruneids_file: pretrained_models/mBart_de/map_ids.pkl
+    tgt_lang: de_DE
+  load_ckpt: pretrained_models/phoenix-2014T_g2t/g2t.pth
+  pretrained_model_name_or_path: pretrained_models/mBart_de
+  overwrite_cfg:
+    attention_dropout: 0.1
+    dropout: 0.3
+
+translation:
+  length_penalty: 1
+  max_length: 100
+  num_beams: 5
+
+VLMapper:
+  type: projection
