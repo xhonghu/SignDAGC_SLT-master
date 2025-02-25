@@ -26,18 +26,18 @@ class TranslationNetwork(torch.nn.Module):
         if 'load_ckpt' in cfg:
             self.load_from_pretrained_ckpt(cfg['load_ckpt'])
 
-    # def load_from_pretrained_ckpt(self, pretrained_ckpt):
-
-    #     checkpoint = torch.load(pretrained_ckpt, map_location='cpu')['model_state']
-    #     load_dict = {}
-    #     for k, v in checkpoint.items():
-    #         if 'translation_network' in k:
-    #             load_dict[k.replace('translation_network.', '')] = v
-    #     self.load_state_dict(load_dict)
-
     def load_from_pretrained_ckpt(self, pretrained_ckpt):
-        checkpoint = torch.load(pretrained_ckpt, map_location='cpu')
-        self.load_state_dict(checkpoint)
+
+        checkpoint = torch.load(pretrained_ckpt, map_location='cpu')['model_state']
+        load_dict = {}
+        for k, v in checkpoint.items():
+            if 'translation_network' in k:
+                load_dict[k.replace('translation_network.', '')] = v
+        self.load_state_dict(load_dict)
+
+    # def load_from_pretrained_ckpt(self, pretrained_ckpt):
+    #     checkpoint = torch.load(pretrained_ckpt, map_location='cpu')
+    #     self.load_state_dict(checkpoint)
 
     def build_gloss_embedding(self, gloss2embed_file, from_scratch=False, freeze=False):
         gloss_embedding = torch.nn.Embedding(
@@ -75,8 +75,8 @@ class TranslationNetwork(torch.nn.Module):
                                               self.gloss_tokenizer.convert_tokens_to_ids(self.gloss_tokenizer.src_lang),
                                               :]  # to-debug
                 else:
-                    src_lang_id = self.text_tokenizer.pruneids[
-                        30]  # self.text_tokenizer.pruneids[self.tokenizer.convert_tokens_to_ids(self.tokenizer.tgt_lang)]
+                    src_lang_id = self.text_tokenizer.pruneids[30]  
+                    # self.text_tokenizer.pruneids[self.tokenizer.convert_tokens_to_ids(self.tokenizer.tgt_lang)]
                     assert src_lang_id == 31
                     src_lang_code_embedding = self.model.model.shared.weight[src_lang_id, :]
                 suffix_embedding.append(src_lang_code_embedding)

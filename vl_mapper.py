@@ -9,11 +9,11 @@ class VLMapper(torch.nn.Module):
         super().__init__()
         self.type = cfg.get('type','projection')
         if self.type == 'projection':
-            self.hidden_size = in_features // 2
+            self.hidden_size = in_features
             self.mapping = torch.nn.Sequential(
-                torch.nn.Linear(in_features=in_features , out_features=self.hidden_size),
-                torch.nn.ReLU(),
-                torch.nn.Linear(in_features=self.hidden_size, out_features=self.hidden_size),
+                torch.nn.Linear(in_features=in_features * 2 , out_features=self.hidden_size),
+                # torch.nn.ReLU(),
+                # torch.nn.Linear(in_features=self.hidden_size , out_features=self.hidden_size),
                 torch.nn.ReLU(),
                 torch.nn.Linear(in_features=self.hidden_size, out_features=out_features)
             )
@@ -33,7 +33,7 @@ class VLMapper(torch.nn.Module):
     
     def forward(self, visual_outputs, lengths=None):
         if self.type=='projection':
-            output = self.mapping(visual_outputs['gloss_feature'].permute(1, 0, 2))
+            output = self.mapping(torch.cat((visual_outputs['gloss_feature'].permute(1, 0, 2), visual_outputs['conv_feature'].permute(1, 0, 2)), dim=-1))
         elif self.type=='embedding':
             output = self.mapping(visual_outputs['sequence_logits'].softmax(-1).permute(1, 0, 2))
         else:

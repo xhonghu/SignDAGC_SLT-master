@@ -16,7 +16,7 @@ TranslationNetwork:
     pretrained_model_name_or_path: pretrained_models/mBart_de
     pruneids_file: pretrained_models/mBart_de/map_ids.pkl
     tgt_lang: de_DE
-  load_ckpt: pretrained_models/phoenix-2014T_g2t/g2t.pth
+  load_ckpt: pretrained_models/phoenix-2014T_g2t/best.ckpt
   pretrained_model_name_or_path: pretrained_models/mBart_de
   overwrite_cfg:
     attention_dropout: 0.1

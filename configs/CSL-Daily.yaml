@@ -15,7 +15,7 @@ TranslationNetwork:
     pretrained_model_name_or_path: pretrained_models/mBart_zh
     pruneids_file: pretrained_models/mBart_zh/old2new_vocab.pkl
     tgt_lang: zh_CN
-  load_ckpt: pretrained_models/CSL-Daily_g2t/g2t.pth
+  load_ckpt: pretrained_models/CSL-Daily_g2t/step_1000.ckpt
   pretrained_model_name_or_path: pretrained_models/mBart_zh
   overwrite_cfg:
     attention_dropout: 0.1
@@ -29,3 +29,4 @@ translation:
 
 VLMapper:
   type: embedding
+  # type: projection

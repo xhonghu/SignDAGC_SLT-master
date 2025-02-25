@@ -8,7 +8,7 @@ work_dir: ./work_dirt/
 batch_size: 4
 random_seed: 0 
 test_batch_size: 4
-num_worker: 20
+num_worker: 10
 device: 0
 log_interval: 10000
 eval_interval: 1
@@ -21,19 +21,26 @@ loss_weights:
   Cu: 0.0005
   Cp: 0.0005
 load_weights:  False
-load_checkpoints:  False
+load_checkpoints: False
 optimizer_args:
   optimizer: Adam
+  # phoenix2014-T
+  # learning_rate:
+  #   base_lr: 1.0e-06
+  #   mapper: 0.001
+  #   translation: 1.0e-06
+
+  # for csl-daily
   learning_rate:
     base_lr: 1.0e-05
-    mapper: 0.0001
-    translation: 1.0e-05 
+    mapper: 1.0e-04
+    translation: 1.0e-05
   step: [40, 60]
   learning_ratio: 1
   scheduler: consine   #ScheaL #consine
   weight_decay: 0.001
   start_epoch: 0
-  num_epoch: 40 #50
+  num_epoch: 30 #50
   nesterov: False
 
 feeder_args:

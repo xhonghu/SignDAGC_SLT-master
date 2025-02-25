@@ -82,6 +82,9 @@ class Processor():
                     #     print("seq_model_list", seq_model_list)
                     #     self.save_model(epoch, model_path)
 
+                    model_path = "{}/checkpoint.pt".format(self.arg.work_dir)
+                    self.save_model(epoch, model_path)
+
                     dev_bleu = seq_eval(self.arg, self.data_loader['dev'], self.model, self.device,
                                         'dev', epoch, self.arg.work_dir, self.recoder,
                                         generate_cfg=self.arg.dataset_info['translation'])
