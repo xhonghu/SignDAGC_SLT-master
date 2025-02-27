@@ -56,7 +56,7 @@ Here we provide the performance of the model (On Test) and its corresponding wei
 | Dataset    | Backbone | Rouge | BLEU1 | BLEU2 | BLEU3 | BLEU4 | Pretrained model                                                                                                          |
 | ---------- | -------- | ----- | ----- | ----- | ----- | ----- | ------------------------------------------------------------------------------------------------------------------------- |
 | Phoenix14T | Resnet34 | 53.01 | 54.85 | 42.28 | 34.24 | 28.68 | [[Google Drive]](https://drive.google.com/drive/folders/1CfLEpCqvERX7_0AvxzqnquGJEFw-Xg7k?dmr=1&ec=wgc-drive-globalnav-goto) |
-| CSL-Daily  | Resnet34 | 52.86 | 55.87 | 42.22 | 32.70 | 25.90 | [[Google Drive]](https://drive.google.com/drive/folders/1PHPewcBlzFrAZmBa8Lh4jBYOYVmEImxH?dmr=1&ec=wgc-drive-globalnav-goto) |
+| CSL-Daily  | Resnet34 | 52.86 | 55.87 | 42.22 | 32.70 | 25.90 | [[Google Drive]](https://drive.google.com/drive/folders/1PHPewcBlzFrAZmBa8Lh4jBYOYVmEImxH?hl=zh-cn) |
 
 ## Evaluate
 
