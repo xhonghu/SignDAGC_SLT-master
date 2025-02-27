@@ -85,7 +85,11 @@ def seq_eval(cfg, loader, model, device, mode, epoch, work_dir, recoder, generat
             del label_lgt
             del output
         txt_ref = [results[n]['txt_ref'] for n in results]
-        txt_hyp = [results[n]['txt_hyp'] for n in results]
+        if cfg.dataset_info['level']=='char':
+            # 将预测值标点符号转换成中文符号。
+            txt_hyp = [results[n]['txt_hyp'].replace(",", "，").replace("?", "？") for n in results]
+        else:
+            txt_hyp = [results[n]['txt_hyp'] for n in results]
         if epoch==6667:
             name = [n for n in results]
             with open(f"{work_dir}/{mode}_visual.txt", "w") as file:
