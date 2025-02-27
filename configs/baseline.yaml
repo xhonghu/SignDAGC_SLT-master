@@ -33,7 +33,7 @@ optimizer_args:
   # for csl-daily
   learning_rate:
     base_lr: 1.0e-05
-    mapper: 1.0e-04
+    mapper: 0.001
     translation: 1.0e-05
   step: [40, 60]
   learning_ratio: 1
