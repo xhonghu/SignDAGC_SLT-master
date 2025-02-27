@@ -28,5 +28,5 @@ translation:
   num_beams: 4
 
 VLMapper:
-  type: embedding
-  # type: projection
+  # type: embedding
+  type: projection
