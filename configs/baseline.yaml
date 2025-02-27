@@ -24,7 +24,7 @@ load_weights:  False
 load_checkpoints: False
 optimizer_args:
   optimizer: Adam
-  # phoenix2014-T
+  # for phoenix2014-T
   # learning_rate:
   #   base_lr: 1.0e-06
   #   mapper: 0.001
